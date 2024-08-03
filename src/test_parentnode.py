@@ -1,9 +1,11 @@
 import unittest
-from parentnode import ParentNode
+
 from leafnode import LeafNode
+from parentnode import ParentNode
+
 
 class TestParentNode(unittest.TestCase):
-    
+
     def test_parentnode_to_html(self):
         # Setup
         node = ParentNode(
@@ -36,7 +38,7 @@ class TestParentNode(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             # Execute
             node.to_html()
-        
+
         # Verify
         self.assertEqual(str(e.exception), "No tag")
 
@@ -44,7 +46,7 @@ class TestParentNode(unittest.TestCase):
         # Setup and Execute
         with self.assertRaises(ValueError) as e:
             ParentNode("p", None)
-        
+
         # Verify
         self.assertEqual(str(e.exception), "Children must be provided")
 
@@ -56,7 +58,7 @@ class TestParentNode(unittest.TestCase):
         with self.assertRaises(ValueError) as e:
             # Execute
             node.to_html()
-        
+
         # Verify
         self.assertEqual(str(e.exception), "No children")
 
@@ -69,7 +71,7 @@ class TestParentNode(unittest.TestCase):
                     "p",
                     [
                         LeafNode("b", "Bold text in paragraph"),
-                    ]
+                    ],
                 ),
             ],
         )
@@ -88,7 +90,7 @@ class TestParentNode(unittest.TestCase):
                     [
                         LeafNode("b", "Bold text"),
                         LeafNode(None, " and some normal text."),
-                    ]
+                    ],
                 ),
             ],
         )
@@ -97,9 +99,11 @@ class TestParentNode(unittest.TestCase):
         result = node.to_html()
 
         # Verify
-        expected = "<div><h1>Header</h1><p><b>Bold text</b> and some normal text.</p></div>"
+        expected = (
+            "<div><h1>Header</h1><p><b>Bold text</b> and some normal text.</p></div>"
+        )
         self.assertEqual(result, expected)
 
-if __name__ == '__main__':
-    unittest.main()
 
+if __name__ == "__main__":
+    unittest.main()

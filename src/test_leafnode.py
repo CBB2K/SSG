@@ -1,5 +1,7 @@
 import unittest
+
 from leafnode import LeafNode
+
 
 class TestLeafNode(unittest.TestCase):
     def test_tag_plus_text(self):
@@ -21,6 +23,7 @@ class TestLeafNode(unittest.TestCase):
     def test_empty_attrs(self):
         leaf4 = LeafNode("span", "Some text", {})
         self.assertEqual(leaf4.to_html(), "<span>Some text</span>")
+
 
 if __name__ == "__main__":
     unittest.main()

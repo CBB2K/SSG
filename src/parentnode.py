@@ -1,7 +1,8 @@
 from htmlnode import HTMLNode
 
+
 class ParentNode(HTMLNode):
-    def __init__(self, tag,  children):
+    def __init__(self, tag, children):
         if children is None:
             raise ValueError("Children must be provided")
 
@@ -15,9 +16,6 @@ class ParentNode(HTMLNode):
         if not self.children:
             raise ValueError("No children")
 
-        child_html = ''.join((child.to_html()) for child in self.children)
-                
+        child_html = "".join((child.to_html()) for child in self.children)
 
         return f"<{self.tag}>{child_html}</{self.tag}>"
-
-
